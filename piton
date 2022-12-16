@@ -1,0 +1,20 @@
+import os, sys
+os.system("g++ good.cpp -o good.exe")
+os.system("g++ bad.cpp -o bad.exe")
+os.system("g++ gen.cpp -o gen.exe")
+_, good, bad, gen, iters = sys.argv 
+# good bad gen x
+for i in range(int(iters)):
+    print("test:", i, end = ": ", flush = True)
+    os.system(f".\{gen} {i} > input.txt")
+    os.system(f".\{bad} < input.txt > bad.txt")
+    os.system(f".\{good} < input.txt > good.txt")
+    good_ans = open("good.txt").read()
+    bad_ans = open("bad.txt").read()
+    if (good_ans != bad_ans):
+        print(open("input.txt").read())
+        print("good: " + open("good.txt").read())
+        print("bad: " + open("bad.txt").read())
+        break
+    print("\n")
+#mt19937_64 rnd(seed);
